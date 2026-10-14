@@ -11,7 +11,7 @@ echo "who is running current script: $USER"
 echo  "Directory of the current script: $PWD"
 echo "Home directory of the current user: $HOME"
 echo "Pid of the curent script: $$"
-sleep 10
+sleep 10 &
 echo "Pid of the command runing in the background now: $!"
 echo $!
 echo "Line number: $LINENO"
