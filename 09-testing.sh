@@ -19,3 +19,5 @@ echo "${text/cats/dogs}"     # I like dogs
 # Upper / lower case (Bash 4+)
 echo "${name^^}"             # ALICE
 echo "${name,,}"             # alice
+
+echo "hello world"
