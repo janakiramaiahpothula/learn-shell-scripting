@@ -1,5 +1,7 @@
 #!/bin/bash
-name="Alice"
+
+
+name="Jhon"
 greeting='Hello, $name'      # single quotes: literal, no expansion
 greeting2="Hello, $name"     # double quotes: variables expand
 

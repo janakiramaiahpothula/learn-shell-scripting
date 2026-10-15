@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #!/bin/bash
 name="Alice"
 greeting='Hello, $name'      # single quotes: literal, no expansion
