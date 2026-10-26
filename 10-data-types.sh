@@ -1,21 +1,24 @@
 #!/bin/bash
 
-var1=10
-var2=20
-var3=siva
 
-echo "$var1+$var2"
-echo "$(($var1+$var2+$var3))"
+echo "Please enter marks"
+read marks
 
-declare -i COUNT=5 # I am declaring as integer
-COUNT=COUNT+1
+if 
+    [$marks -lt 33]; then
+    echo "faile"
+if [$marks -lt 50]; then
+    echo "third class"
 
-echo "Count is: $COUNT"
+if [$marks -lt 60];then
+   echo "second class"
 
-FRUITS=("Apple" "Banana" "Pappaya") # This is called as array
-echo "All fruits: ${FRUITS[@]}"
-echo "First fruit: ${FRUITS[1]}"
+if [$marks -lt 75]; then
+    echo "first class"
 
-name="Sivakumar Reddy M"
+else 
+   echo "distaction"
 
-echo "${name}ettukuru"
+fi
+
+echo  "End"
