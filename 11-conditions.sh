@@ -1,20 +1,25 @@
 #!/bin/bash
 
-echo "Please enter the marks"
-read marks
+user_id=$(id -u)
 
-# lt -> less than
-
-if [ $marks -lt 33 ]; then
-    echo "Fail"
-elif [ $marks -lt 50 ]; then
-    echo "Third class"
-elif [ $marks -lt 60 ]; then
-    echo "Second class"
-elif [ $marks -lt 75 ]; then
-    echo "First class"
-else
-    echo "Distinction"
+if [$user_id -ne 0 ]; then
+  echo "please run this script with sudo access...."
+  exit 1
+fi 
+  echo "Proceding"
+  dnf install nginx -y
+if [ $? -ne 0 ]; then
+  echo "Nginx instalation failed"
+  exit 1
+else 
+  echo "Nginx instalation success"
 fi
+  dnf install mysql -y
+if [$? -ne 0 ]; then
+  echo "Mysql instalation failed"
+  exit 1
+else 
+   echo "Mysql instalation sucess"
 
-echo "End"
+   echo "Still proceded....."
+
