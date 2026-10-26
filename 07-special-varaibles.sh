@@ -15,3 +15,4 @@ sleep 10 &
 echo "PID of the command running in background now: $!"
 wait $!
 echo "Line number : $LINENO"
+echo "Total time excuted this for this script: $SECONDS"
