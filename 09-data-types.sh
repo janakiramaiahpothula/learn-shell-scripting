@@ -14,3 +14,6 @@ echo "count is : $COUNT"
 STUDENTS=("Sai" "Ram" "Varun")
 echo "All Students: ${STUDENTS[@]}"
 echo "Frist Student Name: ${STUDENTS[1]}"
+
+name="Shivakumar Reddy M"
+echo "${name}etukuri"
