@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# EC2 instance configuration
+AMI_ID="ami-0220d79f3f480ecf5"
+INSTANCE_TYPE="t2.micro"
+KEY_NAME="my-key"
+SECURITY_GROUP_ID="sg-0cadca73f7bd058f6"
+INSTANCE_NAME="MyLinuxServer"
+REGION="us-east-1"
+
+# Check AWS CLI
+if ! command -v aws >/dev/null 2>&1; then
+    echo "Error: AWS CLI is not installed."
+    exit 1
+fi
+
+# Check AWS credentials
+if ! aws sts get-caller-identity --region "$REGION" >/dev/null 2>&1; then
+    echo "Error: AWS credentials or permissions are invalid."
+    exit 1
+fi
+
+# Create EC2 instance
+INSTANCE_ID=$(aws ec2 run-instances \
+    --image-id "$AMI_ID" \
+    --instance-type "$INSTANCE_TYPE" \
+    --key-name "$KEY_NAME" \
+    --security-group-ids "$SECURITY_GROUP_ID" \
+    --count 1 \
+    --tag-specifications \
+    "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" \
+    --region "$REGION" \
+    --query 'Instances[0].InstanceId' \
+    --output text)
+
+if [[ -z "$INSTANCE_ID" || "$INSTANCE_ID" == "None" ]]; then
+    echo "EC2 instance creation failed."
+    exit 1
+fi
+
+echo "Instance ID: $INSTANCE_ID"
+
+# Wait until the instance is running
+if ! aws ec2 wait instance-running \
+    --instance-ids "$INSTANCE_ID" \
+    --region "$REGION"; then
+    echo "Error: Instance did not reach the running state."
+    exit 1
+fi
+
+# Get public IP address
+PUBLIC_IP=$(aws ec2 describe-instances \
+    --instance-ids "$INSTANCE_ID" \
+    --region "$REGION" \
+    --query 'Reservations[0].Instances[0].PublicIpAddress' \
+    --output text)
+
+echo "EC2 instance created successfully!"
+echo "Instance ID: $INSTANCE_ID"
+echo "Public IP: $PUBLIC_IP"
