@@ -11,6 +11,6 @@ COUNT="COUNT+1"
 
 echo "count is : $COUNT"
 
-STUDENTS={"Sai, Ram, Varun"}
+STUDENTS=("Sai, Ram, Varun")
 echo "All Students ${STUDENTS [@]}"
 echo "Frist Student Name : ${STUDENTS[1]}"
