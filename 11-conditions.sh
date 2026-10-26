@@ -20,6 +20,6 @@ if [ $? -ne 0 ]; then
   exit 1
 else 
    echo "Mysql instalation sucess"
-
+fi   
    echo "Still proceded....."
 
