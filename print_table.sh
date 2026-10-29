@@ -9,5 +9,4 @@
     printf "5\tBhuvan\tFrontenedDV\tActive\tICICI\n"
     printf "6\tKumar\tBackendDV\tActive\tHDFC\n"
     
-    | column -t -s $'\t'
-}
+} | column -t -s $'\t'
